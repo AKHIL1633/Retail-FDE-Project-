@@ -1,5 +1,30 @@
 # ReturnGuard
 
+> ## About this fork
+>
+> Forked from [data-guru0/Retail-FDE-Project-](https://github.com/data-guru0/Retail-FDE-Project-) for learning and portfolio purposes. The original design, code and license are by **data-guru0**; full credit to the author. My own additions are listed below and kept separate from the original work.
+>
+> ### Why this project
+> It shows governed autonomy rather than a chatbot demo: a LangGraph pipeline of ten agents (data-quality gate, planner, intake, policy RAG, image check, behavior, decision, critic, explanation, governance) where the final route is decided by **policy-as-code**, not by a prompt.
+>
+> ### Design decisions worth knowing
+> - **Governance lives in OPA** (`infra/opa/governance.rego`, with tests): auto-approve only when the kill switch is off, data quality passes, risk is under its threshold, confidence is over its threshold, no Critic veto, the refund is not high-value, and the automation level permits it. Anything else escalates to a human.
+> - **Auto-deny is never final**: a human always confirms a denial.
+> - **Automation-level ladder** (shadow, suggest, assist, auto) plus a global kill switch, so autonomy is increased deliberately.
+> - **Resumable runs**: a Postgres checkpointer makes every run inspectable and replayable (`worker/replay.py`).
+> - **AI-image detector chosen by bake-off**: three Hugging Face detectors compared on a small set (`ml/detector_bakeoff/`); the best scored 0.917 accuracy on 12 images, so treat that as indicative, not production-grade.
+> - **Tamper-evident audit trail**: a hash-chained, append-only audit log with a verifier (`scripts/verify_audit_chain.py`).
+>
+> ### My additions (tracking)
+> - [ ] Run the full stack locally and record the results of the 13 scenarios in `docs/scenarios/`
+> - [ ] Add pytest unit tests for the pipeline nodes and the governance gate
+> - [ ] Add measured numbers (review-time saved, auto-approve rate, false-approve rate) from my own runs
+> - [ ] Add a short demo video and an architecture diagram image
+>
+> Items are checked off only once they are done and committed.
+
+---
+
 **A real e-commerce return/refund process, run by a governed multi-agent AI system.**
 
 Most "AI agent" demos are a chatbot with a nice prompt. ReturnGuard is the
