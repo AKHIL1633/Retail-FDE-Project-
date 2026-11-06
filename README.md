@@ -1,8 +1,8 @@
 # ReturnGuard
 
-> ## About this fork
+> ## About this project
 >
-> Forked from [data-guru0/Retail-FDE-Project-](https://github.com/data-guru0/Retail-FDE-Project-) for learning and portfolio purposes. The original design, code and license are by **data-guru0**; full credit to the author. My own additions are listed below and kept separate from the original work.
+> Built by **P Akhil** as a class project, following the reference implementation by [data-guru0](https://github.com/data-guru0/Retail-FDE-Project-) (course material and license remain theirs). My own additions are tracked below.
 >
 > ### Why this project
 > It shows governed autonomy rather than a chatbot demo: a LangGraph pipeline of ten agents (data-quality gate, planner, intake, policy RAG, image check, behavior, decision, critic, explanation, governance) where the final route is decided by **policy-as-code**, not by a prompt.
